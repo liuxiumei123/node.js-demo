@@ -1,24 +1,13 @@
 #!/usr/bin/node
 
-var me={};
+console.log('进程process.id:'+process.pid);
 
-var i=0;
+process.stdin.resume();
 
-var msg=['name','email','qq','phone'];
+process.on('SIGINT',function(){
+  console.log('you press ctrl-c,good bye');
+})
 
-
-   console.log(msg[i]+" : ");
-
-   process.stdin.on('data',function(data){
-     //  var cmd= 'me.'+msg[i]+'="'+data.slice(0,data.length-1)+'"';
-       //console.log(cmd);
-        //eval(cmd);
-     me[msg[i]]=data.slice(0,data.length-1).toString();
-       // me[msg[i]]=eval(data.slice(0,data.length-1));
-       // console.log(me);
-        console.log(msg[++i]+" : ");
-   });
-
-process.stdin.on('end',function(){
-  console.log(me);
-});
+process.on('SIGTSTP',function(){
+  console.log('you press ctrl-z,stop running');
+})
