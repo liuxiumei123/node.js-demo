@@ -29,7 +29,7 @@ var buf4=new Buffer("hello world",'utf8');
 console.log('buf4的长度为:%s，内容为:',buf4.length,buf4.toString());
 
 
-buf3.copy(buf3,buf4);
+buf3.copy(buf3);
 
 console.log('buf3的长度为：%s,内容为：',buf3.length,buf3);
 

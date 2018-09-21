@@ -1,4 +1,4 @@
-
+#!/usr/bin/node
 
 var name=process.argv[2];
 var passwd=process.argv[3];
