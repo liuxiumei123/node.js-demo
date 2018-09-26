@@ -1,11 +1,11 @@
 #!/usr/bin/node
 
-process.stdin.resume();
+//process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
-process.stdin.push('hello');
-process.stdin.push('world')
-process.stdin.pipe(process.stdout);
+process.stdin.push('hello ');
+process.stdin.push('world \n');
+
 
 process.stdin.on('data',function(data){
   process.stdout.write(data.toUpperCase());
