@@ -7,7 +7,7 @@ var Radio=function(station){
   var self=this;
   setTimeout(function(){
     self.emit('open',station);
-  },0);
+},0);
 
   setTimeout(function(){
     self.emit('stop',station);
@@ -16,9 +16,9 @@ var Radio=function(station){
   for(var methodName in events.EventEmitter){
     console.log(methodName);
     this[methodName]=events.EventEmitter[methodName];
-  }
+   
 }
 
-
+Radio();
 
 module.exports=Radio;
