@@ -4,8 +4,7 @@ var Readable=require('stream').Readable;
 var util=require('util');
 
 var c=97;
-function Mystream()
-{//调用基类  构造函数中的方法
+function Mystream(){//调用基类  构造函数中的方法
   Readable.call(this);
 }
 //继承原型上的方法
@@ -21,8 +20,12 @@ Mystream.prototype._read=function(){
 
 var rs=new Mystream();
 rs.push('hello');
+rs.on('data',function(chunck){
+  process.stdout.write(chunck);
+})
 
-rs.pipe(process.stdout);
+
+//rs.pipe(process.stdout);
 
 
 //var rs=new Readable(); 

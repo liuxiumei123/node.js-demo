@@ -14,7 +14,7 @@ function Dog(name,energy){
   var timer=setInterval(function(){
     self.emit('bark');
   },1000);
-  this. emit=function(e,args){
+  this.emit=function(e,args){
    this.listeners[e].forEach(function(fn){
        fn.call(self,args);
     })

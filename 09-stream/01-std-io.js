@@ -14,6 +14,7 @@ process.stdin.on('data',function(data){
 
 for(var x='a'.charCodeAt();x<='z'.charCodeAt();x++){
   process.stdout.write(String.fromCharCode(x));
+  //process.stdin.push('nnnnn你好 \n');
 }
 
 process.stdout.write('\n');
