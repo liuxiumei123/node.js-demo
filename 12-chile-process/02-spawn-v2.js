@@ -3,9 +3,7 @@
 var cp=require('child_process');
 console.log('I am father process. PID:',process.pid);
 
-console.log('cat 01-exec-file.js\n');
-
-var child=cp.spawn('cat',['02-spawn-v1.js']);
+var child=cp.spawn('node',['02-child.js']);
 
 child.stdout.pipe(process.stdout);
 child.stderr.pipe(process.stderr);
