@@ -3,19 +3,21 @@
 
 var http=require('http');
 var fs=require('fs');
+var util=require('util');
+var log=util.debuglog('app');
 
 
 http.createServer(function(req,res){
-  console.log('--------------');
-  console.log(req.headers);
-  console.log(req.url);
+  log('--------------');
+  log(req.headers);
+  log(req.url);
 
 var filename=__dirname+req.url;
 
 var stream=fs.createReadStream(filename);
 stream.pipe(res);
 stream.on('error',function(err){
-  console.log(err.message);
+  log(err.message);
   stream.pipe(res);
 });
 
