@@ -9,7 +9,8 @@ function option(addr){
 
   var options=url.parse(addr);
   options.method='GET';
-  options.headers={'User-Agent':'05-my-curl.js'};
+  //必须要写headers中的用户代理  但是为什么？
+  options.headers={'User-Agent':'05-curl.js'};
   
   return options;
 
@@ -17,7 +18,7 @@ function option(addr){
 
 function get(opt){
 
-  http.get(opt,res=>{
+ var head= http.get(opt,res=>{
     console.log('status',res.statusCode);
     console.log('message',res.statusMessage);
     console.log('HTTP version',res.httpVersion);
@@ -29,6 +30,7 @@ function get(opt){
       get(option(res.headers.location));
     }
   })
+ console.log('headers',head.getHeader('User-Agent'));
 
 }
 

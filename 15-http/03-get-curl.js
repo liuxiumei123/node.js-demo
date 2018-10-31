@@ -1,7 +1,7 @@
 #!/usr/bin/node
 
 var http=require('http');
-const  URL=require('url');
+//const  URL=require('url');
 
 //var dir="http://user:pass@host.com:8080/p/a/t/h?query=string#hash";
 //console.log(url.parse(dir,true,true));
