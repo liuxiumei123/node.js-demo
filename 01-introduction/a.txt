@@ -1,0 +1,14 @@
+------WebKitFormBoundary4nqCB6kLRReaIXs1
+Content-Disposition: form-data; name="user"
+
+123
+------WebKitFormBoundary4nqCB6kLRReaIXs1
+Content-Disposition: form-data; name="psw"
+
+456
+------WebKitFormBoundary4nqCB6kLRReaIXs1
+Content-Disposition: form-data; name="file"; filename="文本.txt"
+Content-Type: text/plain
+
+﻿123你好吗？
+------WebKitFormBoundary4nqCB6kLRReaIXs1--
