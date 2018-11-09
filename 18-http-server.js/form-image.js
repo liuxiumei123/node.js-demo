@@ -9,6 +9,8 @@ http.createServer((req, res) => {
         log('url', req.url);
         log('headers', req.headers);
         log('');
+        var boundary=req.headers['content-type'].split('; ')[1].split('=')[1];
+        log('');
 
         if (req.url != '/favicon.ico' && req.method === 'POST') {
                 if (req.url !== '/upload') {//打开页面失败，不是指定页面
@@ -29,14 +31,24 @@ http.createServer((req, res) => {
                         var array=file.split('\r\n\r\n');
                         log('包数据',array[0]);
                         log('包长度',array[0].split('\r\n').length);
-                        log('数据长度',array[1].split('\r\n').length);
-                        log(array[1].split('\r\n')[0]);  
+                        var fff=array[0].split('\r\n')[1];
+                        log(fff);
+                        var ff=fff.split('; ')[2];
+                        log(ff);
+                        var f=ff.split('=')[1];
+                        log(f);
+                        var filename=f.slice(1,f.length-1);
+                        var data=array[1].split('--'+boundary)[0];
+                        log(array[1].split('--'+boundary)[1]);
+
+
+
                        // file.splice(-2,2);
-                     fs.writeFileSync("1.png", file, {
+                     fs.writeFileSync(filename, data, {
                              'encoding': 'binary'
                      });
                     //res.end(file);
-                    show(res, okPage.replace('%',__dirname+'/wm.png'));//展示图片页面
+                    show(res, okPage.replace('%',__dirname+"/"+filename));//展示图片页面
 
                 });
 
