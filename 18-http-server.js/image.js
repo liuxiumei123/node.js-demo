@@ -14,7 +14,7 @@ http.createServer((req, res) => {
 
         if (req.url != '/favicon.ico' && req.method === 'POST') {
           
-        var boundary=req.headers['content-type'].split('; ')[1].split('=')[1];
+        var boundary=req.headers['content-type'].split(';')[1].trim().split('=')[1];
         log('');
                 if (req.url !== '/upload') {//打开页面失败，不是指定页面
                         show(res, errorPage);
@@ -30,27 +30,21 @@ http.createServer((req, res) => {
 
                 req.on('end', () => {
                        // log('接受数据为：',file);
-                        //切割数据
+                        //切割数据获取文件名称
                         var array=file.split('\r\n\r\n');
-                        log('包数据',array[0]);
-                        log('包长度',array[0].split('\r\n').length);
                         var fff=array[0].split('\r\n')[1];
-                        log(fff);
-                        var ff=fff.split('; ')[2];
-                        log(ff);
+                        var ff=fff.split(';')[2].trim();
                         var f=ff.split('=')[1];
-                        log(f);
                         var filename=f.slice(1,f.length-1);
-                        var data=array[1].split('--'+boundary)[0];
-                        log(array[1].split('--'+boundary)[1]);
+
+                        //切割数据获取文件内容
+                        var data=array[1].split('\r\n--'+boundary)[0];
 
 
 
-                       // file.splice(-2,2);
                      fs.writeFileSync(__dirname+'/public/images/'+filename, data, {
                              'encoding': 'binary'
                      });
-                    //res.end(file);
                     show(res, okPage.replace('%','/images/'+filename));//展示图片页面
 
                 });
@@ -60,16 +54,11 @@ http.createServer((req, res) => {
                 if (req.url === '/') {//GET请求 展示表单页面
                         show(res, uploadPage);
 
-                } if(req.url.indexOf('/images')!=-1){
-                  console.log(req.url);
+                } if(req.url.indexOf('/images')!=-1){//展示图片
                    res.writeHead(200, {'Content-Type': 'image/png'});
-
-                 // console.log( fs.readFileSync(__dirname+'/public'+req.url));
-                  res.end(fs.readFileSync(__dirname+'/public'+req.url));
-                }
-                else {
+                   res.end(fs.readFileSync(__dirname+'/public'+req.url));
+                } else {
                         show(res, errorPage);//展示错误页面
-
                 }
 
         }
