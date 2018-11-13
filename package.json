@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/liuxiumei123/node.js-demo#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "eslint": "^5.7.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "formidable": "^1.2.1"
   }
 }
