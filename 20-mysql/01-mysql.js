@@ -1,6 +1,9 @@
 #!/usr/bin/node
 
 var mysql=require('mysql');
+var http=require('http');
+
+http.createServer(function(req,res){
 var connection = mysql.createConnection({
       host     : 'localhost',
       user     : 'root',
@@ -8,22 +11,27 @@ var connection = mysql.createConnection({
       database : 'test'
 
 });
+
+
 //连接数据库
 connection.connect();
 
 //操作数据库
-/*
-//var sql='select * from books';
-var sql='select * from books where id=?';
+
+var sql='select * from books';
+//var sql='select * from books :where id=?';
 connection.query(sql,[2],function(err,result){
   if(err){
     console.log(err);
     process.exit(100);
   }
   console.log(result);
+  console.log(typeof result);
+  result=JSON.stringify(result);
+  res.end(result)
 })
-*/
 
+}).listen(8080);
 
 /*
 //插入数据
@@ -57,17 +65,17 @@ connection.query(sql,["中国",2],function(err,result){
 
 
 //删除数据
-var sql='delete from books where title = "Mysql"';
-connection.query(sql,["中国",2],function(err,result){
+//var sql='delete from books where title = "Mysql"';
+//connection.query(sql,["中国",2],function(err,result){
 
-  if(err){
-    console.log(err);
-    process.exit(100);
-  }
-  console.log(result);
-})
+ // if(err){
+//    console.log(err);
+ //   process.exit(100);
+ // }
+ // console.log(result);
+//})
 
 
 
 //关闭数据库
-connection.end();
+//connection.end();
