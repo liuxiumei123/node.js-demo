@@ -20,10 +20,10 @@ http.get(addr,function(res){
     var $=cheerio.load(html);
     var arr=[];
     $('body').find('div.main').each(function(){
-      var cName=$(this).find('a').text(),
-          cTime=$(this).find('p.fl').text(),
-          cTarget=$(this).find('div.course_target').text(),
-          cUrl=$(this).find('a').attr('href');
+      var cName=$(this).find('a').text().trim(),
+          cTime=$(this).find('p.fl').text().trim(),
+          cTarget=$(this).find('div.course_target').text().trim(),
+          cUrl=$(this).find('a').attr('href').trim();
       if(cTime==='') return;
 
        arr.push([cName,cTime,cTarget,cUrl]);
